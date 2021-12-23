@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  techjobs-postgres:
+    image: postgres:13
+    restart: "no"
+    environment:
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - "5432:5432"
+    volumes:
+      - "techjobs-postgres:/var/lib/postgresql/data"
+
+volumes:
+  techjobs-postgres:
