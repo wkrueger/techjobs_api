@@ -1,5 +1,5 @@
 """
-WSGI config for techjobs_vagas project.
+WSGI config for project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'techjobs_vagas.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "techjobs_root.settings")
 
 application = get_wsgi_application()
