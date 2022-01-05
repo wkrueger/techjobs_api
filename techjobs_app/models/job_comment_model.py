@@ -1,4 +1,4 @@
-from main.models.job_model import JobModel
+from techjobs_app.models.job_model import JobModel
 from .timestamp_mixin import TimestampMixin
 from django.db import models
 from django.contrib.auth.models import User

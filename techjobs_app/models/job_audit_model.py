@@ -1,6 +1,6 @@
 from django.db import models
 
-from main.models.job_model import JOB_STATUS_CHOICES
+from techjobs_app.models.job_model import JOB_STATUS_CHOICES
 from .timestamp_mixin import TimestampMixin
 from django.contrib.auth.models import User
 

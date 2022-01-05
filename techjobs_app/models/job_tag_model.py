@@ -1,6 +1,6 @@
 from django.db import models
 
-from main.models.timestamp_mixin import TimestampMixin
+from techjobs_app.models.timestamp_mixin import TimestampMixin
 
 TAG_TYPES_CHOICES = [
     ("CONTRACT_TYPE", "Tipo de contratação"),
