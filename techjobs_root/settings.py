@@ -125,3 +125,8 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 GRAPHENE = {"SCHEMA": "techjobs_app.schema.schema"}
+
+AUTH_USER_MODEL = "techjobs_app.UserModel"
+
+GH_CLIENT_ID = env("GH_CLIENT_ID")
+GH_CLIENT_SECRET = env("GH_CLIENT_SECRET")

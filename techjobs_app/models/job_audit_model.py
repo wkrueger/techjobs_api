@@ -2,11 +2,11 @@ from django.db import models
 
 from techjobs_app.models.job_model import JOB_STATUS_CHOICES
 from .timestamp_mixin import TimestampMixin
-from django.contrib.auth.models import User
+from .user_model import UserModel
 
 
 class JobAuditModel(TimestampMixin):
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_by = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     from_status = models.CharField(
         "Do status", max_length=32, choices=JOB_STATUS_CHOICES, null=True
     )

@@ -9,6 +9,8 @@ django-environ = "*"
 psycopg2 = "*"
 graphene-django = "*"
 psycopg2-binary = "*"
+requests = "*"
+injector = "*"
 
 [dev-packages]
 black = "*"
