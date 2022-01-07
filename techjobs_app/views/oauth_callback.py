@@ -1,6 +1,6 @@
 from django.http import HttpRequest
 
-from techjobs_app.services.github_oauth import GithubOauth
+from techjobs_app.services.github_oauth_service import GithubOauth
 from injector import inject
 
 """
