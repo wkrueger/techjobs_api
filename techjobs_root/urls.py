@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from graphene_django.views import GraphQLView
+from techjobs_app.views.oauth_callback_view import oauth_callback_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("graphql", GraphQLView.as_view(graphiql=True)),
+    path("oauth_callback", oauth_callback_view, name="oauth_callback"),
 ]
