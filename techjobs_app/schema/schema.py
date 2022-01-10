@@ -1,5 +1,5 @@
-import graphene
-from techjobs_app.schema.mutation import Mutation
-from techjobs_app.schema.query import Query
+import strawberry
 
-schema = graphene.Schema(query=Query)
+from .query.query import Query
+
+schema = strawberry.Schema(query=Query)

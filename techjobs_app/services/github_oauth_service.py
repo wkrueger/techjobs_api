@@ -1,9 +1,12 @@
 import urllib.parse
+import uuid
+
+import requests
+from kink import di
+
 from techjobs_app.models.temp_oauth_tokens import TempOauthTokens
 from techjobs_root.settings import GH_CLIENT_ID, GH_CLIENT_SECRET
-import uuid
-import requests
-from typing import TypedDict
+from dataclasses import dataclass
 
 """
 FLUXO DE CRIAÇÃO DE USUÁRIO
@@ -29,33 +32,42 @@ PS: É necessário um fluxo de remoção de conta
 """
 
 
-class AccessTokenResponse(TypedDict):
+@dataclass
+class GetOauthUrlResponse:
+    url: str
+    state: str
+
+
+@dataclass
+class AccessTokenResponse:
     access_token: str
 
 
-def get_oauth_url():
-    base_url = "https://github.com/login/oauth/authorize"
-    vars = {"client_id": GH_CLIENT_ID, "state": uuid.uuid4()}
-    return {"url": base_url + urllib.parse.urlencode(vars), "state": vars["state"]}
+class GithubOauthService:
+    def get_oauth_url(self):
+        base_url = "https://github.com/login/oauth/authorize"
+        query = {"client_id": GH_CLIENT_ID, "state": uuid.uuid4()}
+        return GetOauthUrlResponse(
+            url=base_url + urllib.parse.urlencode(query), state=query["state"]
+        )
+
+    def get_access_token(selfg, code: str) -> AccessTokenResponse:
+        base_url = "https://github.com/login/oauth/access_token"
+        query = {
+            "client_id": GH_CLIENT_ID,
+            "client_secret": GH_CLIENT_SECRET,
+            "code": code,
+        }
+        response = requests.post(base_url, params=query, headers={"Accept": "application/json"})
+        json = response.json()
+        return AccessTokenResponse(access_token=json["access_token"])
+
+    def persist_code(self, state: str, code: str, token: str):
+        persist = TempOauthTokens(state=state, code=code, token=token)
+        persist.save()
+
+    def get_user_info(self, state: str):
+        pass
 
 
-def get_access_token(code: str) -> AccessTokenResponse:
-    base_url = "https://github.com/login/oauth/access_token"
-    vars = {
-        "client_id": GH_CLIENT_ID,
-        "client_secret": GH_CLIENT_SECRET,
-        "code": code,
-    }
-    response = requests.post(
-        base_url, params=vars, headers={"Accept": "application/json"}
-    )
-    return response.json()
-
-
-def persist_code(state: str, code: str, token: str):
-    persist = TempOauthTokens(state=state, code=code, token=token)
-    persist.save()
-
-
-def get_user_info(self, state: str):
-    pass
+di[GithubOauthService] = GithubOauthService()
