@@ -20,11 +20,8 @@ from techjobs_app.schema.schema import schema
 from techjobs_app.views.oauth_callback_view import oauth_callback_view
 from strawberry.django.views import AsyncGraphQLView
 
-from techjobs_app.views.test_view import test_view
-
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("test/", test_view, name="test"),
     path("graphql/", AsyncGraphQLView.as_view(schema=schema)),
     path("oauth_callback", oauth_callback_view, name="oauth_callback"),
 ]

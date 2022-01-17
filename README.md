@@ -10,15 +10,15 @@
 
   - Python 3.9
   - PostgreSQL (13)
-  - Gerenciador de pacotes: pipenv
+  - Gerenciador de pacotes: poetry
 
 ## Comandos iniciais
 
-**Instalação:** pipenv install
+**Instalação:** poetry install
 
 **Variáveis de ambiente:** `cp .env.development .env`
 
-**Execução:** `pipenv shell` e `python manage.py runserver`
+**Execução:** `poetry shell` e `python manage.py runserver`
 
 
 O arquivo `docker-compose.yml` possui uma instância postgresql de exemplo (este compose não inclui o servidor python). (`docker-compose up -d`).
